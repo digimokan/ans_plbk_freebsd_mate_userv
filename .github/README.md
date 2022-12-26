@@ -32,7 +32,7 @@ for normal daily use, for one user:
 
 * [Intel NUC6I7KYK Bare Bones Kit](https://www.amazon.com/gp/product/B01DJ9XS52):
   for main PC kit.
-* [Monoprice 1 ft 3-Prong AC power cord](https://www.amazon.com/Monoprice-18AWG-Grounded-Power-IEC-320-C5/dp/B08BXM5CGB):
+* [Monoprice 1 ft 3-Prong AC Power Cord](https://www.amazon.com/Monoprice-18AWG-Grounded-Power-IEC-320-C5/dp/B08BXM5CGB):
   since NUC6I7KYK Bare Bones Kit DC adapter is missing this part.
 * [Crucial 32GB DDR4 RAM](https://www.amazon.com/gp/product/B015YPB8ME):
   for two 16GB RAM boards.
