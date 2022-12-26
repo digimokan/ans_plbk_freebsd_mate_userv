@@ -75,7 +75,7 @@ quit_err_msg_with_help() {
 do_ugrade_ansible_packages() {
   # NOTE: py-psutil is required for dconf module for MATE
   #   - see https://docs.ansible.com/ansible/latest/collections/community/general/dconf_module.html#notes
-  pkg install --yes sysutils/ansible sysutils/py-psutil
+  pkg install --yes sysutils/ansible sysutils/py-psutil python
   exit_code="${?}"
   if [ "${exit_code}" != 0 ]; then
     quit_err_msg_with_help "error attempting to upgrade ansible" 5
