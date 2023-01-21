@@ -175,11 +175,11 @@
         terminal_shell: "/usr/local/bin/fish"
         terminal_window_height: "48"
         terminal_window_width: "192"
-        font_for_window_titles: "Sans 16"
-        font_for_desktop_background: "Sans 14"
-        font_for_apps: "Sans 14"
-        font_for_docs: "Sans 14"
-        font_for_monospace: "Monospace 14"
+        font_for_window_titles: "Sans 18"
+        font_for_desktop_background: "Sans 16"
+        font_for_apps: "Sans 16"
+        font_for_docs: "Sans 16"
+        font_for_monospace: "Monospace 16"
     - name: "Install and configure the LightDM display manager"
       ansible.builtin.include_role:
         name: ext/ans_role_config_lightdm_dm
