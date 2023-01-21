@@ -99,9 +99,9 @@
     - name: "Install and configure the automount device-mounting utility"
       ansible.builtin.include_role:
         name: ext/ans_role_config_automount
-    - name: "Install and configure the LibreOffice office application suite"
-      ansible.builtin.include_role:
-        name: ans_role_config_libreoffice
+    # - name: "Install and configure the LibreOffice office application suite"
+    #   ansible.builtin.include_role:
+    #     name: ans_role_config_libreoffice
     - name: "Install and configure the VLC video player"
       ansible.builtin.include_role:
         name: ans_role_config_vlc
