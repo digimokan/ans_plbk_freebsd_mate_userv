@@ -68,6 +68,7 @@
       vars:
         user_name: "{{ wkst_user_and_group_name }}"
         user_groups:
+          - "video"
           - "webcamd"
         comment: "{{ wkst_user_and_group_name }}"
         create_home_dir: false
