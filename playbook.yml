@@ -22,6 +22,13 @@
       vars:
         menu_timeout_seconds: "2"
         load_cpu_microcode_updates: true
+    - name: "Install and configure video card drivers"
+      ansible.builtin.include_role:
+        name: ext/ans_role_config_video_drivers
+        public: yes
+      vars:
+        video_card_make: "Intel"
+        video_card_series: "HD"
     - name: "Add sudo-users group '{{ sudo_users_group_name }}'"
       ansible.builtin.include_role:
         name: ext/ans_role_add_group
@@ -42,7 +49,7 @@
       vars:
         user_name: "{{ wkst_user_and_group_name }}"
         user_groups:
-          - "video"
+          - "{{ video_group_name }}"
           - "webcamd"
         comment: "{{ wkst_user_and_group_name }}"
         create_home_dir: false
@@ -96,12 +103,6 @@
         name: ext/ans_role_config_xdg_user_dirs
       vars:
         user_name: "{{ wkst_user_and_group_name }}"
-    - name: "Install and configure video card drivers"
-      ansible.builtin.include_role:
-        name: ext/ans_role_config_video_drivers
-      vars:
-        video_card_make: "Intel"
-        video_card_series: "HD"
     - name: "Install and configure the OSS sound driver layer"
       ansible.builtin.include_role:
         name: ext/ans_role_config_oss
