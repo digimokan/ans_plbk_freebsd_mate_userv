@@ -144,8 +144,6 @@
     - name: "Install and configure the Simple-Scan scanning application"
       ansible.builtin.include_role:
         name: ans_role_config_simple_scan
-      vars:
-        remove_other_scanning_apps: true
     - name: "Install and configure the Cheese webcam snapshot application"
       ansible.builtin.include_role:
         name: ans_role_config_cheese
