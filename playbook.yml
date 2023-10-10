@@ -73,7 +73,7 @@
         name: ans_role_create_filesystem_datasets
       vars:
         filesystem_datasets:
-          - { pool: "{{ zpl }}", path: '/home',      mount: '/home',     owner: 'root',       group: "{{ rusg }}", mode: '755' }
+          - { pool: "{{ zpl }}", path: '/home', mount: '/home', owner: 'root', group: "{{ rusg }}", mode: '755' }
           - { pool: "{{ zpl }}", path: "{{ adir }}", mount: 'inherited', owner: "{{ ausg }}", group: "{{ ausg }}", mode: '710' }
           - { pool: "{{ zpl }}", path: "{{ wdir }}", mount: 'inherited', owner: "{{ wusg }}", group: "{{ wusg }}", mode: '710' }
         zpl: "{{ zfs_pool }}"
@@ -94,7 +94,7 @@
       ansible.builtin.git:
         repo: "https://github.com/digimokan/ans_plbk_freebsd_mate_userv.git"
         dest: "/home/{{ admin_user_and_group_name }}/ans_plbk_freebsd_mate_userv"
-        update: no
+        update: false
       become: true
       become_user: "{{ admin_user_and_group_name }}"
     - name: "Create and configure XDG user dirs for '{{ wkst_user_and_group_name }}'"
