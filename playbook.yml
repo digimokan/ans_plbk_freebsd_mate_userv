@@ -175,11 +175,6 @@
         automatic_restic_backup_dirs:
           - "/home/{{ wkst_user_and_group_name }}/Documents/"
         restic_user_guide_dir: "/home/{{ wkst_user_and_group_name }}/"
-    - name: "Install and configure Xorg"
-      ansible.builtin.include_role:
-        name: ans_role_config_xorg
-      vars:
-        user_name: "{{ wkst_user_and_group_name }}"
     - name: "Install and configure the MATE desktop environment"
       ansible.builtin.include_role:
         name: ext/ans_role_config_mate_de
