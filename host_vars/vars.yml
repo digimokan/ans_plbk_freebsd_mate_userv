@@ -13,14 +13,14 @@
 #   - playbook.yml wires up linking in vars from vars.yml, vault.yml
 
 # main user-login/account-name on the workstation PC
-wkst_user_and_group_name: "{{ vault_wkst_user_and_group_name }}"
+vault_clear_wkst_user_and_group_name: "{{ vault_enc_wkst_user_and_group_name }}"
 
 # for config_restic: an S3 bucket that will host the remote-backup repo
-wkst_user_restic_s3_bucket_url: "{{ vault_wkst_user_restic_s3_bucket_url }}"
+vault_clear_restic_s3_bucket_url: "{{ vault_enc_restic_s3_bucket_url }}"
 
 # for config_restic: the storage-provider-issued ID for the S3 bucket
-wkst_user_restic_s3_bucket_key_id: "{{ vault_wkst_user_restic_s3_bucket_key_id }}"
+vault_clear_restic_s3_bucket_key_id: "{{ vault_enc_restic_s3_bucket_key_id }}"
 
 # for config_restic: the storage-provider-issued key-string for the S3 bucket
-wkst_user_restic_s3_bucket_secret_keystring: "{{ vault_wkst_user_restic_s3_bucket_secret_keystring }}"
+vault_clear_restic_s3_bucket_secret_keystring: "{{ vault_enc_restic_s3_bucket_secret_keystring }}"
 
