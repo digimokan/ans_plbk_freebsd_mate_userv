@@ -12,6 +12,12 @@
 #   - ansible.cfg wires up vault_password.txt
 #   - playbook.yml wires up linking in vars from vault_enc.yml, vault_clear.yml
 
+# for config_bitwarden_cli: API key client ID
+vault_clear_bitwarden_api_key_client_id: "{{ vault_enc_bitwarden_api_key_client_id }}"
+
+# for config_bitwarden_cli: API key client secret
+vault_clear_bitwarden_api_key_client_secret: "{{ vault_enc_bitwarden_api_key_client_secret }}"
+
 # main user-login/account-name on the workstation PC
 vault_clear_wkst_user_and_group_name: "{{ vault_enc_wkst_user_and_group_name }}"
 

@@ -44,6 +44,10 @@
       ansible.builtin.include_role:
         name: ans_role_config_webcam
         public: true
+    - name: "Install and configure the FreeBSD Linux Binary-Compat Layer"
+      ansible.builtin.include_role:
+        name: ans_role_config_freebsd_linux_compat
+        public: true
     - name: "Add sudo-users group '{{ sudo_users_group_name }}'"
       ansible.builtin.include_role:
         name: ext/ans_role_add_group
@@ -90,6 +94,30 @@
         password_prompt_timeout_minutes: 0
         use_root_umask: true
         set_auth_for_group: "{{ sudo_users_group_name }}"
+    - name: "Install and configure the jq command-line json parser"
+      ansible.builtin.include_role:
+        name: ans_role_config_jq
+        public: true
+    - name: "Install and configure the xsel clipboard provider"
+      ansible.builtin.include_role:
+        name: ans_role_config_xsel
+        public: true
+    - name: "Install and configure the fzf command-line fuzzy finder"
+      ansible.builtin.include_role:
+        name: ans_role_config_fzf
+        public: true
+    - name: "Install and configure the Bitwarden CLI password manager utility"
+      ansible.builtin.include_role:
+        name: ans_role_config_bitwarden_cli
+        public: true
+      vars:
+        bitwarden_user_name: "{{ vault_clear_wkst_user_and_group_name }}"
+        bitwarden_check_freebsd_linux_compat_cmd: "{{ freebsd_linux_compat_check_cmd }}"
+        bitwarden_cli_api_key_client_id: "{{ vault_clear_bitwarden_api_key_client_id }}"
+        bitwarden_cli_api_key_client_secret: "{{ vault_clear_bitwarden_api_key_client_secret }}"
+        bitwarden_cli_exec_jq_cmd: "{{ jq_main_cmd }}"
+        bitwarden_cli_exec_xsel_cmd: "{{ xsel_main_cmd }}"
+        bitwarden_cli_exec_fzf_cmd: "{{ fzf_main_cmd }}"
     - name: "Clone this playbook repo to home dir of admin user '{{ admin_user_and_group_name }}'"
       ansible.builtin.git:
         repo: "https://github.com/digimokan/ans_plbk_freebsd_mate_userv.git"
