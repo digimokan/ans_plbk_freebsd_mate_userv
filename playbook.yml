@@ -9,7 +9,7 @@
     root_user_group_name: "wheel"
     zfs_pool: "zroot"
     admin_user_home_dir: "/home/{{ admin_user_and_group_name }}"
-    wkst_user_home_dir: "/home/{{ wkst_user_and_group_name }}"
+    wkst_user_home_dir: "/home/{{ vault_clear_wkst_user_and_group_name }}"
   tasks:
     - name: "Configure system clock, time, and time zone"
       ansible.builtin.include_role:
