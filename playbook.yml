@@ -200,6 +200,10 @@
         restic_s3_bucket_url: "{{ vault_clear_restic_s3_bucket_url }}"
         restic_s3_bucket_key_id: "{{ vault_clear_restic_s3_bucket_key_id }}"
         restic_s3_bucket_secret_keystring: "{{ vault_clear_restic_s3_bucket_secret_keystring }}"
+        default_pass_cmd: >-
+          {{ bitwarden_cli_utility_script_main_cmd }}
+          --print-entry=WasabiUserV
+          --custom-field=AMAZON_S3_BUCKET_REPO_KEYSTRING
         automatic_restic_backup_dirs:
           - "/home/{{ vault_clear_wkst_user_and_group_name }}/Documents/"
         restic_user_guide_dir: "/home/{{ vault_clear_wkst_user_and_group_name }}/"
