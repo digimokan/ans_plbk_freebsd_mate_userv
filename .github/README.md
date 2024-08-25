@@ -86,8 +86,7 @@ for normal daily use, for one user:
     * Set hostname to _userv.machine_.
     * zfs guided installation: _mirror_ (for 2 disks), and enable _encrypt disks_.
     * For network interface _em0_: enable _IPv4_, and enable _dhcp_.
-    * Install service _ntpd_.
-    * Install service _ntpdate_.
+    * Install services: _ntpd_, _ntpd_sync_on_start_.
 
 5. Remove the USB stick, and reboot the PC to the new installation.
 
@@ -118,6 +117,7 @@ for normal daily use, for one user:
    vars in `playbook.yml`:
 
     * [`bitwarden_master_password`](https://github.com/digimokan/ans_role_config_bitwarden_cli?tab=readme-ov-file#role-options).
+    * [`cfg_user_password`](https://github.com/digimokan/ans_role_config_user/blob/main/defaults/main/overridable/main.yml).
 
 6. Run the [`configure.sh`](../configure.sh) script to configure the workstation.
 
