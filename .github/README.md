@@ -84,7 +84,7 @@ for normal daily use, for one user:
 4. Follow guided installation. Select/enable __only__ these options:
 
     * Set hostname to _userv.machine_.
-    * zfs guided installation: _mirror_ (for 2 disks), and enable _encrypt disks_.
+    * zfs guided installation: _mirror_ (for 2 disks).
     * For network interface _em0_: enable _IPv4_, and enable _dhcp_.
     * Install services: _ntpd_, _ntpd_sync_on_start_.
 

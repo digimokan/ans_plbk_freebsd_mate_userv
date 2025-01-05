@@ -114,14 +114,12 @@
         name: ans_role_config_zfs_datasets
       vars:
         zfs_datasets_to_create:
-          - { pool: "{{ zpl }}", path: '/home', owner: 'root', group: "{{ rusg }}", mode: '755', enc: '' }
           - { pool: "{{ zpl }}", path: "{{ adir }}", owner: "{{ ausg }}", group: "{{ ausg }}", mode: '710', enc: '' }
           - { pool: "{{ zpl }}", path: "{{ wdir }}", owner: "{{ wusg }}", group: "{{ wusg }}", mode: '710', enc: "{{ wpswd }}" }
         zpl: "{{ zfs_pool }}"
         adir: "{{ admin_user_home_dir }}"
         wdir: "{{ wkst_user_home_dir }}"
         wpswd: "{{ wkst_user_password_for_zfs_homedir_dataset }}"
-        rusg: "{{ root_user_group_name }}"
         ausg: "{{ admin_user_and_group_name }}"
         wusg: "{{ vault_clear_wkst_user_and_group_name }}"
     - name: "Configure sudo settings for auth group '{{ sudo_users_group_name }}'"
