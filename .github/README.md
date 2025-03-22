@@ -83,7 +83,8 @@ for normal daily use, for one user:
 
 4. Follow guided installation. Select/enable __only__ these options:
 
-    * Set hostname to _userv.machine_.
+    * Host Name: _tempname.machine_.
+        * Note: [playbook `machine_hostname` var](../playbook.yml)) sets persistent hostname.
     * ZFS guided installation: _mirror_ (for 2 disks).
     * Network interface _em0_: enable _IPv4_, and enable _dhcp_.
 

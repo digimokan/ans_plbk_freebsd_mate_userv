@@ -4,6 +4,7 @@
     - host_vars/vault_clear.yml
     - host_vars/vault_enc.yml
   vars:
+    machine_hostname: 'userv.machine'
     admin_user_and_group_name: "admin"
     sudo_users_group_name: "wheel"
     root_user_group_name: "wheel"
@@ -16,6 +17,11 @@
     admin_user_home_dir: "/home/{{ admin_user_and_group_name }}"
     wkst_user_home_dir: "/home/{{ vault_clear_wkst_user_and_group_name }}"
   tasks:
+    - name: "Configure the machine's hostname"
+      ansible.builtin.include_role:
+        name: ans_role_config_hostname
+      vars:
+        cfg_hostname_hostname: "{{ machine_hostname }}"
     - name: "Configure system clock, time, and time zone"
       ansible.builtin.include_role:
         name: ext/ans_role_config_time
