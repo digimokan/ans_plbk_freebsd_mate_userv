@@ -198,11 +198,11 @@
       ansible.builtin.include_role:
         name: ans_role_config_firefox
       vars:
-        user_name: "{{ vault_clear_wkst_user_and_group_name }}"
-        home_page: 'https://www.google.com'
-        install_google_widevine_drm_addon: true
-        install_bitwarden_ext: true
-        install_user_agent_switcher_ext: true
+        firefox_user_name: "{{ vault_clear_wkst_user_and_group_name }}"
+        firefox_home_page: 'https://www.google.com'
+        firefox_install_google_widevine_drm_addon: true
+        firefox_install_bitwarden_ext: true
+        firefox_install_user_agent_switcher_ext: true
         firefox_search_providers: "{{ browser_search_providers }}"
     - name: "Install and configure the Chromium browser"
       ansible.builtin.include_role:
