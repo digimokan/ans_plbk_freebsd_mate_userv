@@ -208,10 +208,11 @@
       ansible.builtin.include_role:
         name: ans_role_config_chromium
       vars:
-        home_page: 'https://www.gmail.com'
-        show_home_button: true
-        install_bitwarden_ext: true
-        install_user_agent_switcher_ext: true
+        chromium_user_name: "{{ vault_clear_wkst_user_and_group_name }}"
+        chromium_home_page: 'https://www.gmail.com'
+        chromium_show_home_button: true
+        chromium_install_bitwarden_ext: true
+        chromium_install_user_agent_switcher_ext: true
         chromium_search_providers: "{{ browser_search_providers }}"
     - name: "Install and configure Avahi"
       ansible.builtin.include_role:
