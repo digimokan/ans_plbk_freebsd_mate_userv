@@ -1,6 +1,7 @@
 # ans_plbk_freebsd_mate_userv
 
-Ansible playbook to configure FreeBSD on a NUC6I7KYK with the MATE DE.
+Ansible playbook to configure a Thelio Prime Custom PC with FreeBSD and the
+MATE DE.
 
 [![Release](https://img.shields.io/github/release/digimokan/ans_plbk_freebsd_mate_userv.svg?label=release)](https://github.com/digimokan/ans_plbk_freebsd_mate_userv/releases/latest "Latest Release Notes")
 [![License](https://img.shields.io/badge/license-MIT-blue.svg?label=license)](LICENSE.txt "Project License")
@@ -31,8 +32,8 @@ for normal daily use, for one user:
 
 ## Hardware Parts List
 
-* [System76 Thelio Prime Custom Desktop PC (thelio-r4-n1)](https://system76.com/desktops/thelio-r4-n1/configure)
-    * Ryzen 9 9950X 5.7 GHz CPU (16 Cores, 32 Threads)
+* [System76 Thelio Prime Custom Desktop PC (thelio-r5-n1)](https://system76.com/desktops/thelio-r5-n1/configure)
+    * Ryzen 5 9600X 5.4 GHz CPU (6 Cores, 12 Threads)
     * 2x 32 GB DDR5 4800 MHz UDIMM RAM
     * Silent Wings 4 120mm GPU Fan
 * [2x Samsung 870 EVO 4TB 2.5 Inch Sata III SSD](https://www.amazon.com/dp/B08QBL36GF)
