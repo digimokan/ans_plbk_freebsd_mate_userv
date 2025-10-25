@@ -4,3 +4,6 @@ roles/ext/**
 # Ansible vault password to encrypt/decrypt secret vars
 vault_password.txt
 
+# Temp file
+wezterm-gui.core
+

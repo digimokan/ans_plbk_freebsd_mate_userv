@@ -9,7 +9,8 @@ Ansible playbook to configure FreeBSD on a NUC6I7KYK with the MATE DE.
 
 * [Purpose](#purpose)
 * [Hardware Parts List](#hardware-parts-list)
-* [NUC6I7KYK BIOS Configuration](#nuc6i7kyk-bios-configuration)
+* [Hardware Connections](#hardware-connections)
+* [PC BIOS Configuration](#pc-bios-configuration)
 * [Quick Start](#quick-start)
     * [Install Base System](#install-base-system)
     * [Configure Workstation](#configure-workstation)
@@ -21,7 +22,7 @@ Ansible playbook to configure FreeBSD on a NUC6I7KYK with the MATE DE.
 
 ## Purpose
 
-Set up a workstation/desktop-PC on a [NUC6I7KYK](https://www.intel.com/content/www/us/en/products/sku/89187/intel-nuc-kit-nuc6i7kyk/specifications.html)
+Set up a workstation/desktop-PC on a [System76 Thelio Prime Custom](https://system76.com/desktops/thelio-r4-n1/configure)
 for normal daily use, for one user:
 
 * Install FreeBSD on two mirrored hard drives.
@@ -30,43 +31,122 @@ for normal daily use, for one user:
 
 ## Hardware Parts List
 
-* [Intel NUC6I7KYK Bare Bones Kit](https://www.amazon.com/gp/product/B01DJ9XS52):
-  for main PC kit.
-* [Monoprice 1 ft 3-Prong AC Power Cord](https://www.amazon.com/Monoprice-18AWG-Grounded-Power-IEC-320-C5/dp/B08BXM5CGB):
-  since NUC6I7KYK Bare Bones Kit DC adapter is missing this part.
-* [Crucial 32GB DDR4 RAM](https://www.amazon.com/gp/product/B015YPB8ME):
-  for two 16GB RAM boards.
-* [Samsung 970 EVO Plus NVMe M.2 2TB SSD, x 2](https://www.amazon.com/gp/product/B07MFZXR1B):
-  for two mirrored hard drives.
-* [HP Pavilion 22CWA 21.5 in 1080p IPS LED Monitor (Left)](https://www.amazon.com/dp/B015WCV70W):
-  connected to rear HDMI port.
-* [HP Pavilion 22CWA 21.5 in 1080p IPS LED Monitor (Right)](https://www.amazon.com/dp/B015WCV70W):
-  connected to rear Mini-DisplayPort port.
-* [Cable Matters 3 ft HDMI to Mini-DisplayPort Cable](https://www.amazon.com/Cable-Matters-Mini-DisplayPort-Black/dp/B00EHTUSMU):
-  to connect Right Monitor to NUC.
-* [Logitech Z207 Powered Speakers](https://www.amazon.com/dp/B074KJ6JQW):
-  for main desktop sound, connected to rear 3.5 mm input jack.
-* [Cable Matters Ultra Mini 4 Port USB 3.0 Hub, x 2](https://www.amazon.com/dp/B00PHPWLPA):
-  for two hubs, each connected to a rear USB 3.0 port.
-* [eMeet USB Speakerphone](https://www.amazon.com/dp/B07Q3D7F8S):
-  to provide mic + speaker for video-conferencing and recording, connected to
-  rear USB Hub.
-* [Logitech C920e Webcam (Mic-Disabled)](https://www.amazon.com/dp/B08CS18WVP):
-  for camera-input only (mic-disabled, to declutter sound panel selections),
-  connected to rear USB Hub.
+* [System76 Thelio Prime Custom Desktop PC (thelio-r4-n1)](https://system76.com/desktops/thelio-r4-n1/configure)
+    * Ryzen 9 9950X 5.7 GHz CPU (16 Cores, 32 Threads)
+    * 2x 32 GB DDR5 4800 MHz UDIMM RAM
+    * Silent Wings 4 120mm GPU Fan
+* [2x Samsung 870 EVO 4TB 2.5 Inch Sata III SSD](https://www.amazon.com/dp/B08QBL36GF)
+* [AMD Radeon RX 580 Graphics Card](https://www.amazon.com/dp/B06Y66K3XD)
+* [HP Pavilion 22CWA 21.5 in 1080p IPS LED Monitor (Left)](https://www.amazon.com/dp/B015WCV70W)
+* [HP Pavilion 22CWA 21.5 in 1080p IPS LED Monitor (Right)](https://www.amazon.com/dp/B015WCV70W)
+* [Ergotron LX Dual Monitor Desk Mount](https://www.amazon.com/dp/B07Q1NJ15Q)
+* [USX Mount Universal Sound Bar Mount](https://www.amazon.com/dp/B081N42KV3)
+    * Attaches to left monitor
+* [Redragon CS560 RGB Desktop Soundbar](https://www.amazon.com/dp/B08X6LYPHK)
+    * Placed on Sound Bar Mount
+* [EMEET C980 Pro Webcam With Built-In Speakers And Mic](https://www.amazon.com/dp/B088BY9PJG)
+    * Placed on left monitor
+* [90-Degree USB-A Adapter](https://www.amazon.com/dp/B0BZ7NWL2Z)
+    * Inserted into Thelio's top-facing USB-A receptacle
+* [90-Degree USB-C Adapter](https://www.amazon.com/dp/B0D33RWK75)
+    * Inserted into Thelio's top-facing USB-C receptacle
+* [Logitech G413 SE Full Size Mechanical Gaming Keyboard](https://www.amazon.com/dp/B08Z6X4NK3)
 
-## NUC6I7KYK BIOS Configuration
+## Hardware Connections
 
-* Press F7 at BIOS screen to update BIOS firmware:
-    * Update to Version 0074 (29 OCT 2021), with
-      [file KY0074.bio](https://www.intel.com/content/www/us/en/download/18677/bios-update-kyskli70.html).
-* Press F2 at BIOS screen, and go to Devices Tab:
-    * Disable 'Thunderbolt Controller.'
-    * Disable 'WLAN.'
-    * Disable 'Bluetooth.'
-    * Disable 'Enhanced Consumer IR.'
-* In BIOS menu, go to Cooling Tab:
-    * Set 'Fan Control Mode' to 'Quiet.'
+```
+                 BACK OF PC
+┌──────────────────────────────────────────────┐
+│                                              │
+│  ┌──┐   ┌──┐ ┌──┐                            │
+│  │H │   │U │ │U │                            │
+│  │D │   │S │ │S │                            │
+│  │M │   │B │ │B │                            │
+│  └I─┘   └──┘ └──┘                            │
+│  HDMI-3  A1   A2                             │
+│                                              │
+│                                              │
+│                                              │
+│                                              │
+│                                              │
+│  ┌──┐ ┌──┐ ┌──┐ ┌──┐                         │
+│  │U │ │U │ │U │ │U │                         │
+│  │S │ │S │ │S │ │S │                         │
+│  │B │ │B │ │B │ │B │                         │
+│  └──┘ └──┘ └──┘ └──┘                         │
+│   C1   A3   A4   A5                          │
+│  ┌──┐ ┌──┐ ┌────┐                            │
+│  │U │ │U │ │    │                            │
+│  │S │ │S │ │ETH │                            │
+│  │B │ │B │ │    │                            │
+│  └──┘ └──┘ └────┘                            │
+│   C2   A6                                    │
+│                                              │
+│  ┌┐ WIFI   ┌┐ WIFI                           │
+│  └┘ ANT    └┘ ANT                            │
+│            ┌┐                                │
+│            └┘ LINE IN                        │
+│            ┌┐                                │
+│  ┌─┐       └┘ LINE OUT                       │
+│  └─┘       ┌┐                                │
+│   OPTICAL  └┘ MIC IN                         │
+│                                              │
+│  ┌────────────────────────────────────────┐  │
+│  │             GRAPHICS CARD              │  │
+│  │ ┌──────┐  ┌──────┐  ┌──────┐  ┌──────┐ │  │
+│  │ │ HDMI │  │DSPORT│  │DSPORT│  │DSPORT│ │  │
+│  │ └──────┘  └──────┘  └──────┘  └──────┘ │  │
+│  │  HDMI-1     DP-3      DP-2      DP-1   │  │
+│  │ ┌──────┐                               │  │
+│  │ │ VGA  │                               │  │
+│  │ └──────┘                               │  │
+│  └────────────────────────────────────────┘  │
+│                                              │
+│                                              │
+│                                              │
+│                                              │
+│                                              │
+│                                              │
+│  ┌────┐ ┌────────┐                           │
+│  │PWR │ │  AC    │                           │
+│  │SW  │ │ADAPTER │                           │
+│  │    │ │        │                           │
+│  └────┘ └────────┘                           │
+│                                              │
+└──────────────────────────────────────────────┘
+```
+
+* Top Row
+    * `HDMI-3`: N/A
+    * `A1 (USB-A)`: USB speakers
+    * `A2 (USB-A)`: mouse dongle
+* Second Row
+    * `C1 (USB-C)`: N/A
+    * `A3 (USB-A)`: monitor mount USB-A port
+    * `A4 (USB-A)`: monitor mount USB-C port
+    * `A5 (USB-A)`: N/A
+* Third Row
+    * `C2 (USB-C)`: keyboard
+    * `A6 (USB-A)`: webcam
+* Fourth Row
+    * `LINE IN`: N/A
+    * `LINE OUT (3.5 mm)`: N/A
+    * `MIC IN (3.5 mm)`: N/A
+* Graphics Card
+    * `HDMI-1`: N/A
+    * `DP-3 (DisplayPort)`: N/A
+    * `DP-2 (DisplayPort)`: right monitor
+    * `DP-1 (DisplayPort)`: left monitor
+
+## PC BIOS Configuration
+
+* `Advanced` -> `Onboard Devices Configuration`
+    * `Wifi Controller`: "Disabled"
+    * `Bluetooth Controller`: "Disabled"
+* `Q-Fan Control`
+    * `CPU_FAN`: "Auto-Detect", "Silent"
+    * `CHA_FAN`: "Auto-Detect", "Silent"
+    * `AIO_PUMP`: "Auto-Detect", "Silent"
 
 ## Quick Start
 

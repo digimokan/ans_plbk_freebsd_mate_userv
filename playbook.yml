@@ -8,6 +8,8 @@
     admin_user_and_group_name: "admin"
     sudo_users_group_name: "wheel"
     root_user_group_name: "wheel"
+    video_card_make: "AMD"
+    video_card_series: "GCN_3_4_5_RDNA"
     zfs_pool: "zroot"
     # Note: temporarily set these user_password vars on first playbook run
     admin_user_password_for_login: ''
@@ -16,6 +18,13 @@
     wkst_user_password_for_bitwarden: ''
     admin_user_home_dir: "/home/{{ admin_user_and_group_name }}"
     wkst_user_home_dir: "/home/{{ vault_clear_wkst_user_and_group_name }}"
+    wkst_user_cache_dir: "/home/{{ vault_clear_wkst_user_and_group_name }}/Cache"
+    wkst_user_firefox_bookmarks_and_browse_history_path: "{{ wkst_user_cache_dir }}/firefox_bookmarks_and_browse_history.sqlite"
+    wkst_user_firefox_bookmark_icons_path: "{{ wkst_user_cache_dir }}/firefox_bookmark_icons.sqlite"
+    wkst_user_firefox_search_and_forms_history_path: "{{ wkst_user_cache_dir }}/firefox_search_and_forms_history.sqlite"
+    wkst_user_chromium_browse_and_search_history_path: "{{ wkst_user_cache_dir }}/chromium_browse_and_search_history.sqlite"
+    wkst_user_chromium_forms_history_path: "{{ wkst_user_cache_dir }}/chromium_forms_history.sqlite"
+    wkst_user_chromium_bookmarks_path: "{{ wkst_user_cache_dir }}/chromium_bookmarks.sqlite"
   tasks:
     - name: "Configure the machine's hostname"
       ansible.builtin.include_role:
@@ -40,19 +49,21 @@
       ansible.builtin.include_role:
         name: ext/ans_role_config_oss
       vars:
-        oss_sound_card_type: 'intel'
-        oss_force_set_sound_output_pcm_at_boot: '0'
-        oss_intel_nid_disable_list:
-          - { card: '0', nid: '30', descrip: 'rear speaker/optical combo jack optical-out-channel' }
-          - { card: '0', nid: '33', descrip: 'front headphones jack out-channel' }
-          - { card: '1', nid: '3', descrip: 'rear HDMI jack audio-out-channel' }
+        oss_load_usb_audio_driver_at_boot: true
+        # oss_sound_card_type: 'intel'
+        # oss_force_set_sound_output_pcm_at_boot: '0'
+        # oss_intel_nid_disable_list:
+        #   - { card: '0', nid: '30', descrip: 'rear speaker/optical combo jack optical-out-channel' }
+        #   - { card: '0', nid: '33', descrip: 'front headphones jack out-channel' }
+        #   - { card: '1', nid: '3', descrip: 'rear HDMI jack audio-out-channel' }
     - name: "Install and configure video card drivers"
       ansible.builtin.include_role:
         name: ext/ans_role_config_video_drivers
         public: true
       vars:
-        cfg_video_card_make: "Intel"
-        cfg_video_card_series: "HD"
+        cfg_video_card_make: "{{ video_card_make }}"
+        cfg_video_card_series: "{{ video_card_series }}"
+        cfg_video_freebsd_build_drm_pkg_from_ports: true
     - name: "Configure webcam support"
       ansible.builtin.include_role:
         name: ans_role_config_webcam
@@ -124,9 +135,11 @@
         zfs_datasets_to_create:
           - { pool: "{{ zpl }}", path: "{{ adir }}", owner: "{{ ausg }}", group: "{{ ausg }}", mode: '710', enc: '' }
           - { pool: "{{ zpl }}", path: "{{ wdir }}", owner: "{{ wusg }}", group: "{{ wusg }}", mode: '710', enc: "{{ wpswd }}" }
+          - { pool: "{{ zpl }}", path: "{{ cdir }}", owner: "{{ wusg }}", group: "{{ wusg }}", mode: '755', enc: '' }
         zpl: "{{ zfs_pool }}"
         adir: "{{ admin_user_home_dir }}"
         wdir: "{{ wkst_user_home_dir }}"
+        cdir: "{{ wkst_user_cache_dir }}"
         wpswd: "{{ wkst_user_password_for_zfs_homedir_dataset }}"
         ausg: "{{ admin_user_and_group_name }}"
         wusg: "{{ vault_clear_wkst_user_and_group_name }}"
@@ -179,9 +192,9 @@
     - name: "Install and configure the sndio sound driver layer"
       ansible.builtin.include_role:
         name: ans_role_config_sndio
-    - name: "Install and configure the automount device-mounting utility"
-      ansible.builtin.include_role:
-        name: ext/ans_role_config_automount
+    # - name: "Install and configure the automount device-mounting utility"
+    #   ansible.builtin.include_role:
+    #     name: ext/ans_role_config_automount
     - name: "Install and configure the LibreOffice office application suite"
       ansible.builtin.include_role:
         name: ans_role_config_libreoffice
@@ -204,6 +217,9 @@
         firefox_install_bitwarden_ext: true
         firefox_install_user_agent_switcher_ext: true
         firefox_search_providers: "{{ browser_search_providers }}"
+        firefox_try_link_to_saved_bookmarks_and_browse_history_path: "{{ wkst_user_firefox_bookmarks_and_browse_history_path }}"
+        firefox_try_link_to_saved_bookmark_icons_history_path: "{{ wkst_user_firefox_bookmark_icons_path }}"
+        firefox_try_link_to_saved_search_and_forms_history_path: "{{ wkst_user_firefox_search_and_forms_history_path }}"
     - name: "Install and configure the Chromium browser"
       ansible.builtin.include_role:
         name: ans_role_config_chromium
@@ -214,6 +230,9 @@
         chromium_install_bitwarden_ext: true
         chromium_install_user_agent_switcher_ext: true
         chromium_search_providers: "{{ browser_search_providers }}"
+        chromium_try_link_to_saved_user_browse_and_search_history_path: "{{ wkst_user_chromium_browse_and_search_history_path }}"
+        chromium_try_link_to_saved_user_form_history_path: "{{ wkst_user_chromium_forms_history_path }}"
+        chromium_try_link_to_saved_user_bookmarks_path: "{{ wkst_user_chromium_bookmarks_path }}"
     - name: "Install and configure Avahi"
       ansible.builtin.include_role:
         name: ans_role_config_avahi
