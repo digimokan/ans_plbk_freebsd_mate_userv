@@ -311,4 +311,10 @@
         name: ans_role_config_shell
       vars:
         user_name: "{{ vault_clear_wkst_user_and_group_name }}"
+    - name: "Build and install packages using the FreeBSD ports tree"
+      ansible.builtin.include_role:
+        name: ans_role_config_freebsd_ports
+      vars:
+        freebsd_ports_package_list:
+          - { port_group_and_name: "{{ cfg_video_freebsd_drm_pkg_port_name }}", always_rebuild_reinstall: false }
 
