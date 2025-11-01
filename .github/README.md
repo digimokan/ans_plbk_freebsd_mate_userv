@@ -23,7 +23,7 @@ MATE DE.
 
 ## Purpose
 
-Set up a workstation/desktop-PC on a [System76 Thelio Prime Custom](https://system76.com/desktops/thelio-r4-n1/configure)
+Set up a workstation/desktop-PC on a [System76 Thelio Prime Custom](https://system76.com/desktops/thelio-r5-n1/configure)
 for normal daily use, for one user:
 
 * Install FreeBSD on two mirrored hard drives.
