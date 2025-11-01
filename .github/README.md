@@ -153,6 +153,24 @@ for normal daily use, for one user:
 
 ### Install Base System
 
+#### Obtain Latest Quarterly Package Files For Realtek NIC
+
+1. Download the latest packages for the following packages onto a USB stick, by
+   constructing a URL with the appropriate FreeBSD version and package version.
+
+    * `pkg`
+    * `realtek-re-kmod`
+
+Note: find the package version in the "Packages" matrix of the package's
+FreshPorts page, where "FreeBSD:nn:quarterly" and "amd64" intersect. The final
+URL to access via a browser should look like this:
+
+    ```
+    https://pkg.freebsd.org/FreeBSD:14:amd64/latest/All/realtek-re-kmod-1100.00.1403000_1.pkg
+    ```
+
+#### Install FreeBSD To The Mirrored Drives
+
 1. Download the latest _RELEASE_ installer image for _amd64_ ("disc1") on the
    [FreeBSD Download Page](https://www.freebsd.org/where/).
 
@@ -162,14 +180,59 @@ for normal daily use, for one user:
 3. Insert the USB stick into the target workstation PC, and boot from the
    FreeBSD installer image.
 
-4. Follow guided installation. Select/enable __only__ these options:
+4. Start the guided installation. Select/enable __only__ these options:
 
     * Host Name: _tempname.machine_.
         * Note: [playbook `machine_hostname` var](../playbook.yml)) sets persistent hostname.
     * ZFS guided installation: _mirror_ (for 2 disks).
-    * Network interface _em0_: enable _IPv4_, and enable _dhcp_.
 
-5. Remove the USB stick, and reboot the PC to the new installation.
+#### Install Realtek NIC And Configure DHCP
+
+1. Reboot into the newly-installed system.
+
+2. Insert the USB stick that contains the realtek NIC packages.
+
+3. Create a directory to mount the USB stick on:
+
+    ```shell
+    $ mkdir /mnt/usbstick
+    ```
+
+4. Mount the USB stick:
+
+    ```shell
+    $ mount -t msdosfs /dev/da0s1 /mnt/usbstick
+    ```
+
+5. Add all of the realtek packages (starting with the `pkg` package):
+
+    ```shell
+    $ pkg add /mnt/usbstick/some-pkg-n.n.n_n.pkg
+    ```
+
+6. Configure the newly-installed NIC kernel module to load at boot, per
+   [the FreeBSD Handbook](https://docs.freebsd.org/en/books/handbook/network/#config-identify-network-adapter),
+   in `/boot/loader.conf`:
+
+    ```text
+    if_re_load="YES"
+    if_re_name="/boot/modules/if_re.ko"
+    ```
+
+7. Reboot the system.
+
+8. Run `ifconfig` and verify that the realtek ethernet NIC is listed as `re0`.
+
+9. Configure the realtek NIC for IPv4 DHCP, per
+   [the FreeBSD Handbook](https://docs.freebsd.org/en/books/handbook/network/#config-identify-network-adapter):
+
+    ```text
+    sysrc ifconfig_re0="DHCP"
+    ```
+
+10. Reboot the system.
+
+11. Verify connectivity to router and internet.
 
 ### Configure Workstation
 
