@@ -43,6 +43,8 @@
     - name: "Configure the FreeBSD 'loader' bootloader"
       ansible.builtin.include_role:
         name: ext/ans_role_config_loader
+      vars:
+        loader_monitor_console_resolution: "1280x720"
     - name: "Install and configure the OSS sound driver layer"
       ansible.builtin.include_role:
         name: ext/ans_role_config_oss
