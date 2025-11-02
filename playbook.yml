@@ -281,17 +281,17 @@
       ansible.builtin.include_role:
         name: ext/ans_role_config_mate_de
       vars:
-        user_name: "{{ vault_clear_wkst_user_and_group_name }}"
-        enable_sound_support: true
-        enable_printing_support: true
-        terminal_shell: "{{ fish_main_cmd }}"
-        terminal_window_height: "48"
-        terminal_window_width: "192"
-        font_for_window_titles: "Sans 20"
-        font_for_desktop_background: "Sans 18"
-        font_for_apps: "Sans 18"
-        font_for_docs: "Sans 16"
-        font_for_monospace: "Monospace 16"
+        mate_de_user_name: "{{ vault_clear_wkst_user_and_group_name }}"
+        mate_de_enable_sound_support: true
+        mate_de_enable_printing_support: true
+        mate_de_terminal_shell: "{{ fish_main_cmd }}"
+        mate_de_terminal_window_height: "48"
+        mate_de_terminal_window_width: "192"
+        mate_de_font_for_window_titles: "Sans 20"
+        mate_de_font_for_desktop_background: "Sans 18"
+        mate_de_font_for_apps: "Sans 18"
+        mate_de_font_for_docs: "Sans 16"
+        mate_de_font_for_monospace: "Monospace 16"
     - name: "Install and configure the LightDM display manager"
       ansible.builtin.include_role:
         name: ext/ans_role_config_lightdm_dm
