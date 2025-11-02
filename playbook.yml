@@ -10,6 +10,8 @@
     root_user_group_name: "wheel"
     video_card_make: "AMD"
     video_card_series: "GCN_3_4_5_RDNA"
+    video_card_number: "0"
+    video_card_bus: "1:0:0"
     zfs_pool: "zroot"
     # Note: temporarily set these user_password vars on first playbook run
     admin_user_password_for_login: ''
@@ -282,6 +284,8 @@
         name: ans_role_config_xorg
       vars:
         xorg_user_name: "{{ vault_clear_wkst_user_and_group_name }}"
+        xorg_external_video_card_number: "{{ video_card_number }}"
+        xorg_external_video_card_bus: "{{ video_card_bus }}"
     - name: "Install and configure the MATE desktop environment"
       ansible.builtin.include_role:
         name: ext/ans_role_config_mate_de
