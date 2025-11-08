@@ -204,7 +204,7 @@
       ansible.builtin.include_role:
         name: ans_role_config_vlc
       vars:
-        enable_dvd_support: true
+        vlc_enable_dvd_support: true
     - name: "Define list of browser search providers"
       ansible.builtin.include_role:
         name: ext/ans_vars_browser_search_providers
