@@ -301,7 +301,8 @@
         cfg_sudo_password_prompt_timeout_minutes: 0
         cfg_sudo_use_root_umask: true
         cfg_sudo_sudoers_rules:
-          - sudoer_name: "{{ sudo_users_group_name }}"
+          - label: "ansible_sudo_users_group_all_auths"
+            sudoer_name: "{{ sudo_users_group_name }}"
             sudoer_type: "group"
             allow_run_on_host: "ALL"
             allow_run_as_user: "ALL"
