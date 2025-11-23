@@ -291,8 +291,8 @@
       ansible.builtin.include_role:
         name: ext/ans_role_config_fonts
       vars:
-        install_ms_legacy_fonts: true
-        install_ms_vista_fonts: true
+        cfg_fonts_install_ms_legacy_fonts: true
+        cfg_fonts_install_ms_vista_fonts: true
     - name: "Configure sudo settings and sudo permissions for users and groups"
       ansible.builtin.include_role:
         name: ext/ans_role_config_sudo
