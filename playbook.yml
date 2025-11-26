@@ -237,6 +237,9 @@
     - name: "Install and configure the OBS video-recording application"
       ansible.builtin.include_role:
         name: ans_role_config_obs
+      vars:
+        obs_studio_user_name: "{{ vault_clear_wkst_user_and_group_name }}"
+        obs_studio_user_video_save_dir: "{{ wkst_user_home_dir }}/Videos"
     - name: "Install the restic backup program, and configure backups to a remote repo"
       ansible.builtin.include_role:
         name: ans_role_config_restic
