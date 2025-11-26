@@ -292,7 +292,7 @@
       vars:
         lightdm_hide_users_list: [ "{{ admin_user_and_group_name }}" ]
         lightdm_session: "{{ mate_de_session.session_name }}"
-        lightdm_login_screen_image_path: "/usr/local/share/backgrounds/mate/desktop/Ubuntu-Mate-Cold-no-logo.png"
+        lightdm_login_screen_image_path: "{{ mate_de_background_image_path }}"
     - name: "Install a standard set of system font packages"
       ansible.builtin.include_role:
         name: ext/ans_role_config_fonts
