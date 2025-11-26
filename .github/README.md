@@ -59,38 +59,44 @@ for normal daily use, for one user:
                  BACK OF PC
 ┌──────────────────────────────────────────────┐
 │                                              │
-│  ┌──┐   ┌──┐ ┌──┐                            │
-│  │H │   │U │ │U │                            │
-│  │D │   │S │ │S │                            │
-│  │M │   │B │ │B │                            │
-│  └I─┘   └──┘ └──┘                            │
-│  HDMI-3  A1   A2                             │
+│                                              │
+│                                              │
+│  ┌──┐ ┌──┐ ┌────┐                            │
+│  │U │ │U │ │    │                            │
+│  │S │ │S │ │ETH │                            │
+│  │B │ │B │ │    │                            │
+│  └──┘ └──┘ └────┘                            │
+│   C1   A1                                    │
 │                                              │
 │                                              │
 │                                              │
-│                                              │
+│  ┌──┐    ┌──┐ ┌──┐                           │
+│  │H │    │U │ │U │                           │
+│  │D │    │S │ │S │                           │
+│  │M │    │B │ │B │                           │
+│  └I─┘    └──┘ └──┘                           │
+│ HDMI-1-3  A2   A3                            │
 │                                              │
 │  ┌──┐ ┌──┐ ┌──┐ ┌──┐                         │
 │  │U │ │U │ │U │ │U │                         │
 │  │S │ │S │ │S │ │S │                         │
 │  │B │ │B │ │B │ │B │                         │
 │  └──┘ └──┘ └──┘ └──┘                         │
-│   C1   A3   A4   A5                          │
-│  ┌──┐ ┌──┐ ┌────┐                            │
-│  │U │ │U │ │    │                            │
-│  │S │ │S │ │ETH │                            │
-│  │B │ │B │ │    │                            │
-│  └──┘ └──┘ └────┘                            │
-│   C2   A6                                    │
+│   A4   A5   A6   A7                          │
+│                                              │
+│  ┌─┐    ┌┐     ┌┐                            │
+│  └─┘    └┘     └┘                            │
+│ OPTICAL LINE   MIC                           │
+│         OUT    IN                            │
+│                                              │
+│  ┌─┐                                         │
+│  └─┘                                         │
+│ BIOS FLBK                                    │
 │                                              │
 │  ┌┐ WIFI   ┌┐ WIFI                           │
 │  └┘ ANT    └┘ ANT                            │
-│            ┌┐                                │
-│            └┘ LINE IN                        │
-│            ┌┐                                │
-│  ┌─┐       └┘ LINE OUT                       │
-│  └─┘       ┌┐                                │
-│   OPTICAL  └┘ MIC IN                         │
+│                                              │
+│                                              │
 │                                              │
 │  ┌────────────────────────────────────────┐  │
 │  │             GRAPHICS CARD              │  │
@@ -118,20 +124,21 @@ for normal daily use, for one user:
 ```
 
 * Top Row
-    * `HDMI-3`: N/A
-    * `A1 (USB-A)`: USB speakers
-    * `A2 (USB-A)`: mouse dongle
+    * `C1 (USB-C 3.2 Gen2, DisplayPort)`: N/A
+    * `A1 (USB-A 3.2)`: N/A
+    * `ETH`: ethernet to LAN
 * Second Row
-    * `C1 (USB-C)`: N/A
-    * `A3 (USB-A)`: monitor mount USB-A port
-    * `A4 (USB-A)`: monitor mount USB-C port
-    * `A5 (USB-A)`: N/A
+    * `HDMI-1-3`: N/A
+    * `A2 (USB-A 3.2 Gen2)`: N/A
+    * `A3 (USB-A 3.2 Gen1)`: webcam
 * Third Row
-    * `C2 (USB-C)`: keyboard
-    * `A6 (USB-A)`: webcam
+    * `A4 (USB-A 2.0)`: N/A
+    * `A5 (USB-A 2.0)`: mouse
+    * `A6 (USB-A 2.0)`: keyboard
+    * `A7 (USB-A 2.0)`: speaker power
 * Fourth Row
-    * `LINE IN`: N/A
-    * `LINE OUT (3.5 mm)`: N/A
+    * `OPTICAL`: N/A
+    * `LINE OUT (3.5 mm)`: speaker data
     * `MIC IN (3.5 mm)`: N/A
 * Graphics Card
     * `HDMI-1`: N/A
