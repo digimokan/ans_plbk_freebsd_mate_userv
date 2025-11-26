@@ -142,12 +142,12 @@ for normal daily use, for one user:
 ## PC BIOS Configuration
 
 * `Advanced` -> `Onboard Devices Configuration`
-    * `Wifi Controller`: "Disabled"
-    * `Bluetooth Controller`: "Disabled"
-* `Q-Fan Control`
-    * `CPU_FAN`: "Auto-Detect", "Silent"
-    * `CHA_FAN`: "Auto-Detect", "Silent"
-    * `AIO_PUMP`: "Auto-Detect", "Silent"
+    * `WAN Radio`: "Disabled"
+    * `BT On/Off`: "Disabled"
+* `H/W Monitor`
+    * `CPU Fan 1 Setting`: "Silent Mode"
+    * `AIO_PUMP Setting`: "Silent Mode"
+    * `Chassis Fan 1 Setting`: "Silent Mode"
 
 ## Quick Start
 
