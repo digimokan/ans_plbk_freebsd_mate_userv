@@ -201,6 +201,7 @@
         chromium_user_name: "{{ vault_clear_wkst_user_and_group_name }}"
         chromium_home_page: 'https://www.gmail.com'
         chromium_show_home_button: true
+        chromium_show_bookmarks_bar: true
         chromium_install_bitwarden_ext: true
         chromium_install_user_agent_switcher_ext: true
         chromium_search_providers: "{{ browser_search_providers }}"
