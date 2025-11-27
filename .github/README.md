@@ -43,10 +43,9 @@ for normal daily use, for one user:
 * [Ergotron LX Dual Monitor Desk Mount](https://www.amazon.com/dp/B07Q1NJ15Q)
 * [USX Mount Universal Sound Bar Mount](https://www.amazon.com/dp/B081N42KV3)
     * Attaches to left monitor
-* [Redragon CS560 RGB Desktop Soundbar](https://www.amazon.com/dp/B08X6LYPHK)
-    * Placed on Sound Bar Mount
 * [EMEET C980 Pro Webcam With Built-In Speakers And Mic](https://www.amazon.com/dp/B088BY9PJG)
     * Placed on left monitor
+* [Logitech Z207 Powered Speakers](https://www.amazon.com/dp/B074KJ6JQW)
 * [90-Degree USB-A Adapter](https://www.amazon.com/dp/B0BZ7NWL2Z)
     * Inserted into Thelio's top-facing USB-A receptacle
 * [90-Degree USB-C Adapter](https://www.amazon.com/dp/B0D33RWK75)
