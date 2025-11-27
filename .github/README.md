@@ -132,9 +132,9 @@ for normal daily use, for one user:
     * `A3 (USB-A 3.2 Gen1)`: webcam
 * Third Row
     * `A4 (USB-A 2.0)`: N/A
-    * `A5 (USB-A 2.0)`: mouse
-    * `A6 (USB-A 2.0)`: keyboard
-    * `A7 (USB-A 2.0)`: speaker power
+    * `A5 (USB-A 2.0)`: N/A
+    * `A6 (USB-A 2.0)`: mouse
+    * `A7 (USB-A 2.0)`: keyboard
 * Fourth Row
     * `OPTICAL`: N/A
     * `LINE OUT (3.5 mm)`: speaker data
