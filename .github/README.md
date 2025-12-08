@@ -124,17 +124,17 @@ for normal daily use, for one user:
 
 * Top Row
     * `C1 (USB-C 3.2 Gen2, DisplayPort)`: N/A
-    * `A1 (USB-A 3.2)`: N/A
+    * `A1 (USB-A 3.2)`: webcam
     * `ETH`: ethernet to LAN
 * Second Row
     * `HDMI-1-3`: N/A
-    * `A2 (USB-A 3.2 Gen2)`: N/A
-    * `A3 (USB-A 3.2 Gen1)`: webcam
+    * `A2 (USB-A 3.2 Gen2)`: keyboard
+    * `A3 (USB-A 3.2 Gen1)`: mouse
 * Third Row
     * `A4 (USB-A 2.0)`: N/A
     * `A5 (USB-A 2.0)`: N/A
-    * `A6 (USB-A 2.0)`: mouse
-    * `A7 (USB-A 2.0)`: keyboard
+    * `A6 (USB-A 2.0)`: N/A
+    * `A7 (USB-A 2.0)`: N/A
 * Fourth Row
     * `OPTICAL`: N/A
     * `LINE OUT (3.5 mm)`: speaker data
