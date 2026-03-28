@@ -125,6 +125,7 @@
       ansible.builtin.include_role:
         name: ans_role_config_zfs_datasets
       vars:
+        zfs_datasets_decrypt_at_boot: true
         zfs_datasets_to_create: "{{ user_home_datasets + wkst_home_subdir_datasets }}"
         user_home_datasets:
           - { parent: "{{ zfs_pool }}{{ system_home_dir }}", stem: "{{ admin_user_and_group_name }}",
