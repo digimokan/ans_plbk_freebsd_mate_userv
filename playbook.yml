@@ -18,9 +18,12 @@
     wkst_user_password_for_login: ''
     wkst_user_password_for_zfs_homedir_dataset: ''
     wkst_user_password_for_bitwarden: ''
-    admin_user_home_dir: "/home/{{ admin_user_and_group_name }}"
-    wkst_user_home_dir: "/home/{{ vault_clear_wkst_user_and_group_name }}"
-    wkst_user_cache_dir: "/home/{{ vault_clear_wkst_user_and_group_name }}/Cache"
+    system_home_dir: "/home"
+    admin_user_home_dir: "{{ system_home_dir }}/{{ admin_user_and_group_name }}"
+    wkst_user_home_dir: "{{ system_home_dir }}/{{ vault_clear_wkst_user_and_group_name }}"
+    wkst_user_home_subdirs:
+      cache: "Cache"
+    wkst_user_cache_dir: "{{ wkst_user_home_dir }}/{{ wkst_user_home_subdirs.cache }}"
     wkst_user_firefox_bookmarks_and_browse_history_path: "{{ wkst_user_cache_dir }}/firefox_bookmarks_and_browse_history.sqlite"
     wkst_user_firefox_bookmark_icons_path: "{{ wkst_user_cache_dir }}/firefox_bookmark_icons.sqlite"
     wkst_user_firefox_search_and_forms_history_path: "{{ wkst_user_cache_dir }}/firefox_search_and_forms_history.sqlite"
@@ -122,17 +125,34 @@
       ansible.builtin.include_role:
         name: ans_role_config_zfs_datasets
       vars:
-        zfs_datasets_to_create:
-          - { pool: "{{ zpl }}", path: "{{ adir }}", owner: "{{ ausg }}", group: "{{ ausg }}", mode: '710', enc: '' }
-          - { pool: "{{ zpl }}", path: "{{ wdir }}", owner: "{{ wusg }}", group: "{{ wusg }}", mode: '710', enc: "{{ wpswd }}" }
-          - { pool: "{{ zpl }}", path: "{{ cdir }}", owner: "{{ wusg }}", group: "{{ wusg }}", mode: '755', enc: '' }
-        zpl: "{{ zfs_pool }}"
-        adir: "{{ admin_user_home_dir }}"
-        wdir: "{{ wkst_user_home_dir }}"
-        cdir: "{{ wkst_user_cache_dir }}"
-        wpswd: "{{ wkst_user_password_for_zfs_homedir_dataset }}"
-        ausg: "{{ admin_user_and_group_name }}"
-        wusg: "{{ vault_clear_wkst_user_and_group_name }}"
+        zfs_datasets_to_create: "{{ user_home_datasets + wkst_home_subdir_datasets }}"
+        user_home_datasets:
+          - { parent: "{{ zfs_pool }}{{ system_home_dir }}", stem: "{{ admin_user_and_group_name }}",
+              mnt: "{{ admin_user_home_dir }}", mnt_inh: true,
+              owner: "{{ admin_user_and_group_name }}",
+              group: "{{ admin_user_and_group_name }}", mode: "710",
+              enc: "", nfs: false }
+          - { parent: "{{ zfs_pool }}{{ system_home_dir }}", stem: "{{ vault_clear_wkst_user_and_group_name }}",
+              mnt: "{{ wkst_user_home_dir }}", mnt_inh: true,
+              owner: "{{ vault_clear_wkst_user_and_group_name }}",
+              group: "{{ vault_clear_wkst_user_and_group_name }}", mode: "710",
+              enc: "{{ wkst_user_password_for_zfs_homedir_dataset }}", nfs: false }
+        wkst_home_subdir_datasets: >-
+          {%- set results = [] -%}
+          {%- for subdir_name in (wkst_user_home_subdirs.values() | list) -%}
+          {%- set _ = results.append({
+            'parent': zfs_pool ~ wkst_user_home_dir,
+            'stem': subdir_name,
+            'mnt': wkst_user_home_dir ~ '/' ~ subdir_name,
+            'mnt_inh': true,
+            'owner': vault_clear_wkst_user_and_group_name,
+            'group': vault_clear_wkst_user_and_group_name,
+            'mode': '755',
+            'enc': '',
+            'nfs': false
+          }) -%}
+          {%- endfor -%}
+          {{ results }}
     - name: "Clone playbook used to set up the machine, and emplace vault password"
       ansible.builtin.include_role:
         name: ans_role_config_user_playbook
